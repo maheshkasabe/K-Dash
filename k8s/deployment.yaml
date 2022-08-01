@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kdash
+  name: kdash-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kdash
+  template: 
+    metadata:
+      labels:
+        app: kdash
+    spec:
+      containers:
+        - image: maheshkasbe/kdash:latest
+          name: kdash-container
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kdash-service
+spec:
+  selector:
+    app: kdash
+  ports:
+    - protocol: TCP
+      port: 3001
+      targetPort: 30
