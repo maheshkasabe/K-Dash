@@ -1,0 +1,79 @@
+.home{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    width: 280px;
+    height: 100%;
+    border: 1px solid lightgray;
+    text-decoration: none;
+}
+
+.title p{
+    color: blue;
+    text-align: left;
+    margin-left: 30px;
+    font-size: xx-large;
+    font-weight: 900;
+}
+
+.workloads{
+    text-align: left;
+    margin-left: 30px;
+    color: blue;
+    font-size: large;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+
+.configuration{
+    text-align: left;
+    margin-left: 30px;
+    color: blue;
+    font-size: large;
+    cursor: pointer;
+}
+
+.network{
+    text-align: left;
+    margin-left: 30px;
+    color: blue;
+    font-size: large;
+    cursor: pointer;
+}
+
+.storage{
+    text-align: left;
+    margin-left: 30px;
+    color: blue;
+    font-size: large;
+    cursor: pointer;
+}
+
+.others{
+    text-align: left;
+    margin-left: 30px;
+    color: blue;
+    font-size: large;
+    cursor: pointer;
+}
+
+.others a{
+    text-decoration: none;
+    color: blue;
+}
+
+.sub{
+    text-align: left;
+    margin-left: 50px;
+    color: blue;
+    font-size: large;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.sub a{
+    text-decoration: none;
+    color: blue;
+}
