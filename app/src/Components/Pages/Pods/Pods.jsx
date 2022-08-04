@@ -2,7 +2,9 @@ import React from 'react'
 
 const Pods = () => {
   return (
-    <div>Pods</div>
+    <div className='pods'>
+      
+    </div>
   )
 }
 
