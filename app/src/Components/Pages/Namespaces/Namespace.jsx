@@ -19,7 +19,11 @@ const Namespace = () => {
   const columns = [
     {
       name : "Name",
-      selector: (row) => row.metadata.name,
+      selector: (row) =>  
+          <div>
+            <a href='/'>{row.metadata.name}</a>
+          </div>
+      ,
     },
     {
       name : "Labels",

@@ -1,4 +1,4 @@
-.namespaces{
+.events{
     width: 100%;
     height: 100%;
     border: 1px solid lightgray;
@@ -7,6 +7,6 @@
     border-radius: 10px;
     background-color: white;
 }
-.namespaces h1{
+.events h1{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

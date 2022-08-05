@@ -3,11 +3,13 @@
     flex-direction: column;
     text-align: center;
     justify-content: center;
-    width: 280px;
+    width: 300px;
     height: 100%;
     border: 1px solid lightgray;
     text-decoration: none;
     padding-bottom: 450px;
+    position: static;
+    background-color: white;
 }
 
 .title p{
