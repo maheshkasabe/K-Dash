@@ -11,6 +11,9 @@ import Namespace from './Components/Pages/Namespaces/Namespace';
 import Events from './Components/Pages/Events/Events';
 import PV from './Components/Pages/PersistantVolumes/PV';
 import Hpa from './Components/Pages/HPA/Hpa';
+import Replicaset from './Components/Pages/Replica_Stateful/Replicaset';
+import Statefulset from './Components/Pages/Replica_Stateful/Statefulset';
+import Daemonset from './Components/Pages/Replica_Stateful/Daemonset';
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
         <Route path='/' element={<> <Home /> <Pods />  </>} />
         <Route path='/pods' element={<> <Home /> <Pods />  </>} />
         <Route path='/deployments' element={<> <Home /> <Deployment /> </>} />
+        <Route path='/replicasets' element={<> <Home /> <Replicaset /> </>} />
+        <Route path='/statefulsets' element={<> <Home /> <Statefulset /> </>} />
+        <Route path='/daemonsets' element={<> <Home /> <Daemonset /> </>} />
         <Route path='/secrets' element={<> <Home /> <Secrets /> </>} />
         <Route path='/rq' element={<> <Home /> <RQ />  </>} />
         <Route path='/hpa' element={<> <Home /> <Hpa />  </>} />

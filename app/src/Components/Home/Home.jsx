@@ -27,6 +27,9 @@ const Home = () => {
             <div className='sub'>
               <p><a href='/pods'>Pods</a></p>
               <p><a href='/deployments'>Deployments</a></p>
+              <p><a href='/replicasets'>ReplicaSets</a></p>
+              <p><a href='/statefulsets'>StatefulSets</a></p>
+              <p><a href='/daemonsets'>DaemonSets</a></p>
             </div>
 
           )

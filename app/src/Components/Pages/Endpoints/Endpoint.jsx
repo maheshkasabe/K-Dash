@@ -28,7 +28,7 @@ const Endpoint = () => {
     {
       name : "Namespace",
       selector: (row) => row.metadata.namespace 
-    }
+    },
   ]
   return (
     <div className='deployments'>
