@@ -27,7 +27,13 @@ const Namespace = () => {
     },
     {
       name : "Labels",
-      selector: (row) => row.metadata.name, 
+      selector: (row) => (row.metadata.labels &&  Object.keys(row.metadata.labels).map((key, value) => {
+        return (
+          <div className='labels'>
+            <span>{key} : {row.metadata.labels[key]}</span>
+          </div>
+        )
+      }))
     },
     {
       name : "Age",

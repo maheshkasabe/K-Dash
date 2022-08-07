@@ -29,8 +29,24 @@ const Secrets = () => {
       selector: (row) => row.metadata.namespace, 
     },
     {
-      name : "Labels",
-      selector: (row) => row.metadata.name
+      name: "Labels",
+      selector: (row) =>(row.metadata.labels &&  Object.keys(row.metadata.labels).map((key, value) => {
+        return (
+          <div className='labels'>
+            <span>{key} : {row.metadata.labels[key]}</span>
+          </div>
+        )
+      }))
+    },
+    {
+      name : "Keys",
+      selector: (row) =>(row.data &&  Object.keys(row.data).map((i,val) => {
+        return (
+          <div className='labels'>
+            <span>{i}</span>
+          </div>
+        )
+      }))
     },
     {
       name : "Type",

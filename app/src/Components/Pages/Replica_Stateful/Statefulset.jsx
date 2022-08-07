@@ -28,6 +28,18 @@ const Statefulset = () => {
             name: "Namespace",
             selector: (row) => row.metadata.namespace,
         },
+        {
+            name: "Desired",
+            selector: (row) => row.status.availableReplicas,
+        },
+        {
+            name: "Current",
+            selector: (row) => row.status.currentReplicas,
+        },
+        {
+            name: "Ready",
+            selector: (row) => row.status.readyReplicas,
+        },
     ]
     return (
         <div className='deployments'>

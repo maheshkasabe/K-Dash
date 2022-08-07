@@ -28,6 +28,14 @@ const Daemonset = () => {
             name: "Namespace",
             selector: (row) => row.metadata.namespace,
         },
+        {
+            name: "nodeSelector",
+            selector: (row) => row.spec.template.spec.nodeSelector["kubernetes.io/os"],
+        },
+        {
+            name: "Pods",
+            selector: (row) => row.status.numberAvailable,
+        },
     ]
     return (
         <div className='deployments'>

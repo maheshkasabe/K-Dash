@@ -28,6 +28,14 @@ const Replicaset = () => {
             name: "Namespace",
             selector: (row) => row.metadata.namespace,
         },
+        {
+            name: "Current",
+            selector: (row) => row.status.availableReplicas,
+        },
+        {
+            name: "Ready",
+            selector: (row) => row.status.readyReplicas,
+        },
     ]
     return (
         <div className='deployments'>

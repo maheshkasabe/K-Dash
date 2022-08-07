@@ -14,6 +14,7 @@ import Hpa from './Components/Pages/HPA/Hpa';
 import Replicaset from './Components/Pages/Replica_Stateful/Replicaset';
 import Statefulset from './Components/Pages/Replica_Stateful/Statefulset';
 import Daemonset from './Components/Pages/Replica_Stateful/Daemonset';
+import PVC from './Components/Pages/PersistantVolumes/PVC';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path='/services' element={<> <Home /> <Services /> </>} />
         <Route path='/endpoints' element={<> <Home /> <Endpoint /> </>} />
         <Route path='/ingress' element={<> <Home /> <PV />  </>} />
+        <Route path='/pvc' element={<> <Home /> <PVC />  </>} />
         <Route path='/pv' element={<> <Home /> <PV />  </>} />
         <Route path='/namespaces' element={<> <Home /> <Namespace /> </>} />
         <Route path='/events' element={<> <Home /> <Events />  </>} />

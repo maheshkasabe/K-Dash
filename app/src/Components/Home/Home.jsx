@@ -69,8 +69,8 @@ const Home = () => {
         {
           state4 && (
             <div className='sub'>
+              <p><a href='/pvc'>PersistentVolumeClaim  </a></p>
               <p><a href='/pv'>Persistent Volumes</a></p>
-              <p><a href='/rq'>Resource Quotas</a></p>
             </div>
           )
         }

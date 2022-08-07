@@ -31,7 +31,7 @@ const Events = () => {
     },
     {
       name : "Involved Object",
-      selector: (row) => row.involvedObject.name, 
+      selector: (row) => <p className='pid'> {row.involvedObject.name} </p>
     },
     {
       name : "Count",

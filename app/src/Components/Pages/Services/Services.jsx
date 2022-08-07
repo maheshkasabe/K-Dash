@@ -1,11 +1,11 @@
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from "axios"
 import DataTable from 'react-data-table-component'
 import "../Deployments/deployments.css"
 
 const Services = () => {
   const [services, setServices] = useState([]);
-  
+
   useEffect(() => {
     const url = "/api/v1/services/"
     axios.get(url).then((response) => {
@@ -18,39 +18,41 @@ const Services = () => {
 
   const columns = [
     {
-      name : "Name",
-      selector: (row) =>  
-          <div>
-            <a href='/'>{row.metadata.name}</a>
-          </div>
+      name: "Name",
+      selector: (row) =>
+        <div>
+          <a href='/'>{row.metadata.name}</a>
+        </div>
       ,
     },
     {
-      name : "Namespace",
-      selector: (row) => row.metadata.namespace 
+      name: "Namespace",
+      selector: (row) => row.metadata.namespace
     },
     {
-      name : "Type",
+      name: "Type",
       selector: (row) => row.spec.type
     },
     {
-      name : "ClusterIP",
+      name: "ClusterIP",
       selector: (row) => row.spec.clusterIP
     },
     {
-      name : "Selector",
-      selector: (row) => row.selector 
-    },
-    {
-      name : "Status",
-      selector: (row) => row.spec.status
+      name: "Selector",
+      selector: (row) => Object.keys(row.metadata.labels).map((key, value) => {
+        return (
+          <div className='labels'>
+            <span>{key} : {row.metadata.labels[key]}</span>
+          </div>
+        )
+      })
     },
   ]
   return (
     <div className='deployments'>
       <div>
-      <h1> All  Services ( {services.length} Services ) </h1>
-      <DataTable columns={columns} data={services} title={"Services"} fixedHeader selectableRows highlightOnHover  />
+        <h1> All  Services ( {services.length} Services ) </h1>
+        <DataTable columns={columns} data={services} title={"Services"} fixedHeader selectableRows highlightOnHover />
       </div>
     </div>
   )

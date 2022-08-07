@@ -3,7 +3,7 @@
     flex-direction: column;
     text-align: center;
     justify-content: center;
-    width: 300px;
+    width: 310px;
     height: 100%;
     border: 1px solid lightgray;
     text-decoration: none;
@@ -70,7 +70,7 @@
 
 .sub{
     text-align: left;
-    margin-left: 50px;
+    margin-left: 35px;
     color: blue;
     font-size: large;
     cursor: pointer;
