@@ -20,11 +20,12 @@ const Home = () => {
         <p> K-Dash </p>
       </div>
 
-      <div className='workloads'>
-        <p onClick={() => setState1(!state1)}><MdRemoveRedEye  size={20} /> Overview</p>
+      <div className='main'>
+        <p onClick={() => setState1(!state1)}><MdRemoveRedEye  size={20} /> Workloads</p>
         {
           state1 && (
             <div className='sub'>
+              <p><a href='/'>Overview</a></p>
               <p><a href='/pods'>Pods</a></p>
               <p><a href='/deployments'>Deployments</a></p>
               <p><a href='/replicasets'>ReplicaSets</a></p>
@@ -36,21 +37,22 @@ const Home = () => {
         }
       </div>
 
-      <div className='configuration'>
-        <p onClick={() => setState2(!state2)}><TbFileSettings size={20} />ConfigMaps</p>
+      <div className='main'>
+        <p onClick={() => setState2(!state2)}><TbFileSettings size={20} />Configuration</p>
         {
           state2 && (
             <div className='sub'>
+              <p><a href='/configmaps'>Configmaps</a></p>
               <p><a href='/secrets'>Secrets</a></p>
               <p><a href='/rq'>Resource Quotas</a></p>
-              <p><a href='/hpa'>HPA</a></p>
+              <p><a href='/limitranges'>Limitranges</a></p>
             </div>
           )
         }
 
       </div>
 
-      <div className='network'>
+      <div className='main'>
       <p onClick={() => { setState3(!state3) }}> <FaNetworkWired size={20} />  Network</p>
         {
           state3 && (
@@ -64,7 +66,7 @@ const Home = () => {
 
       </div>
 
-      <div className='storage'>
+      <div className='main'>
         <p onClick={() => { setState4(!state4) }}><MdStorage color={'blue'} size={20} /> Storage</p>
         {
           state4 && (
@@ -76,11 +78,11 @@ const Home = () => {
         }
       </div>
 
-      <div className='others'>
+      <div className='main'>
         <p><a href='/namespaces'><GrStackOverflow size={20} /> Namespaces</a></p>
       </div>
 
-      <div className='others'>
+      <div className='main'>
         <p><a href='/events'><MdEmojiEvents size={20} /> Events</a></p>
       </div>
 

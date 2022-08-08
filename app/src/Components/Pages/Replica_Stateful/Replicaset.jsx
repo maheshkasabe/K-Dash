@@ -1,19 +1,37 @@
 import { useEffect, useState } from 'react';
 import axios from "axios"
 import DataTable from 'react-data-table-component'
-import "../Deployments/deployments.css"
+import "../main.css"
 
 const Replicaset = () => {
     const [replicas, setReplicas] = useState([]);
 
+    const namespace = "kubernetes-dashboard"
+
     useEffect(() => {
-        const url = "/apis/apps/v1/replicasets/"
-        axios.get(url).then((response) => {
-            setReplicas(response.data.items);
-            console.log(response.data.items);
-        }).catch((err) => {
-            console.log(err);
-        })
+        const fnc = () => {
+            const url = "/apis/apps/v1/replicasets/"
+            axios.get(url).then((response) => {
+                setReplicas(response.data.items);
+                console.log(response.data.items);
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
+        const fnc1 = () => {
+            const url = `/apis/apps/v1/namespaces/${namespace}/replicasets/`
+            axios.get(url).then((response) => {
+                setReplicas(response.data.items);
+                console.log(response.data.items);
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
+
+        (
+            namespace ? fnc1() : fnc()
+        )
+
     }, [])
 
     const columns = [
@@ -21,7 +39,7 @@ const Replicaset = () => {
             name: "Name",
             selector: (row) =>
                 <div>
-                    <a href='/'>{row.metadata.name}</a>
+                    {row.metadata.name}
                 </div>
         },
         {
@@ -38,7 +56,7 @@ const Replicaset = () => {
         },
     ]
     return (
-        <div className='deployments'>
+        <div className='component'>
             <div>
                 <h1> All  ReplicaSets ( {replicas.length} ReplicaSets ) </h1>
                 <DataTable columns={columns} data={replicas} title={"ReplicaSets"} fixedHeader selectableRows highlightOnHover />

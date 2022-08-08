@@ -1,4 +1,4 @@
-.deployments{
+.component{
     width: 100%;
     height: 100%;
     border: 1px solid lightgray;
@@ -7,7 +7,7 @@
     border-radius: 10px;
     background-color: white;
 }
-.deployments h1{
+.component h1{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: dodgerblue;
 }
@@ -17,4 +17,22 @@
     flex-direction: column;
     margin: 2px;
     padding: 1px;
+}
+
+.events{
+    width: 85%;
+    height: 100%;
+    border: 1px solid lightgray;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 10px;
+    background-color: white;
+}
+.events h1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: dodgerblue;
+}
+
+.pid{
+    color: dodgerblue;
 }

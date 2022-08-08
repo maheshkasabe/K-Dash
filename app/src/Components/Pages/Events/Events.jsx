@@ -1,7 +1,7 @@
 import { useEffect,useState } from 'react';
 import axios from "axios"
 import DataTable from 'react-data-table-component'
-import "./events.css"
+import "../main.css"
 
 const Events = () => {
   const [events, setEvents] = useState([]);

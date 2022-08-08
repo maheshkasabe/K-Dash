@@ -1,19 +1,37 @@
 import { useEffect, useState } from 'react';
 import axios from "axios"
 import DataTable from 'react-data-table-component'
-import "../Deployments/deployments.css"
+import "../main.css"
 
 const RQ = () => {
   const [rq, setRQ] = useState([]);
 
+  const namespace = "argocd"
+
   useEffect(() => {
-    const url = "/api/v1/resourcequotas/"
-    axios.get(url).then((response) => {
-      setRQ(response.data.items);
-      console.log(response.data.items);
-    }).catch((err) => {
-      console.log(err);
-    })
+    const fnc = () => {
+      const url = "/api/v1/resourcequotas/"
+      axios.get(url).then((response) => {
+        setRQ(response.data.items);
+        console.log(response.data.items);
+      }).catch((err) => {
+        console.log(err);
+      })
+    }
+    const fnc1 = () => {
+      const url = `/api/v1/namespaces/${namespace}/resourcequotas/`
+      axios.get(url).then((response) => {
+        setRQ(response.data.items);
+        console.log(response.data.items);
+      }).catch((err) => {
+        console.log(err);
+      })
+    }
+
+    (
+      namespace ? fnc1() : fnc()
+    )
+
   }, [])
 
   const columns = [
@@ -21,7 +39,7 @@ const RQ = () => {
       name: "Name",
       selector: (row) =>
         <div>
-          <a href='/'>{row.metadata.name}</a>
+          {row.metadata.name}
         </div>
     },
     {
@@ -30,12 +48,12 @@ const RQ = () => {
     },
   ]
   return (
-    <div className='deployments'>
-    <div>
-      <h1> All  Resourse Quotas ( {rq.length} Resourse Quotas ) </h1>
-      <DataTable columns={columns} data={rq} title={"Resourse Quotas"} fixedHeader selectableRows highlightOnHover />
+    <div className='component'>
+      <div>
+        <h1> All  Resourse Quotas ( {rq.length} Resourse Quotas ) </h1>
+        <DataTable columns={columns} data={rq} title={"Resourse Quotas"} fixedHeader selectableRows highlightOnHover />
+      </div>
     </div>
-  </div>
   )
 }
 

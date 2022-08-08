@@ -1,7 +1,7 @@
 import { useEffect,useState } from 'react';
 import axios from "axios"
 import DataTable from 'react-data-table-component'
-import "./namespace.css"
+import "../main.css"
 
 const Namespace = () => {
   const [namespaces, setNamespaces] = useState([]);
@@ -21,7 +21,7 @@ const Namespace = () => {
       name : "Name",
       selector: (row) =>  
           <div>
-            <a href='/'>{row.metadata.name}</a>
+            {row.metadata.name}
           </div>
       ,
     },
@@ -45,7 +45,7 @@ const Namespace = () => {
     },
   ]
   return (
-    <div className='namespaces'>
+    <div className='component'>
       <div>
         <h1> All  Namespaces ( {namespaces.length} namespace ) </h1>
       <DataTable columns={columns} data={namespaces} title={"Namespaces"} fixedHeader selectableRows highlightOnHover  />

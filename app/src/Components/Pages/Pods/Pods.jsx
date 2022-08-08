@@ -5,14 +5,33 @@ import "./pods.css"
 const Pods = () => {
   const [pods, setPods] = useState([])
 
+  const namespace = "kubernetes-dashboard"
+  
   useEffect(() => {
-    const url = "/api/v1/pods/"
-    axios.get(url).then((response) => {
-      setPods(response.data.items);
-      console.log(response.data.items);
-    }).catch((err) => {
-      console.log(err);
-    })
+    const fnc= () => {
+      const url = "/api/v1/pods/"
+      axios.get(url).then((response) => {
+        setPods(response.data.items);
+        console.log(response.data.items);
+      }).catch((err) => {
+        console.log(err);
+      })
+    }
+
+    const fnc1 = () => {
+      const url = `/api/v1/namespaces/${namespace}/pods/`
+      axios.get(url).then((response) => {
+        setPods(response.data.items);
+        console.log(response.data.items);
+      }).catch((err) => {
+        console.log(err);
+      })
+    }
+
+    (
+      namespace ? fnc1() : fnc() 
+    )
+
   }, [])
 
   return (

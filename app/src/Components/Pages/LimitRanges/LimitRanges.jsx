@@ -3,25 +3,26 @@ import axios from "axios"
 import DataTable from 'react-data-table-component'
 import "../main.css"
 
-const PVC = () => {
-  const [pvc, setPvc] = useState([]);
+const LimitRanges = () => {
+  const [limitranges, setLlimitranges] = useState([]);
 
   const namespace = "kubernetes-dashboard"
 
   useEffect(() => {
     const fnc = () => {
-      const url = "/api/v1/persistentvolumeclaims/"
+      const url = "/api/v1/limitranges/"
       axios.get(url).then((response) => {
-        setPvc(response.data.items);
+        setLlimitranges(response.data.items);
         console.log(response.data.items);
       }).catch((err) => {
         console.log(err);
       })
     }
+
     const fnc1 = () => {
-      const url = `/api/v1/namespaces/${namespace}/persistentvolumeclaims/`
+      const url = `/api/v1/namespaces/${namespace}/limitranges/`
       axios.get(url).then((response) => {
-        setPvc(response.data.items);
+        setLlimitranges(response.data.items);
         console.log(response.data.items);
       }).catch((err) => {
         console.log(err);
@@ -31,6 +32,7 @@ const PVC = () => {
     (
       namespace ? fnc1() : fnc()
     )
+
   }, [])
 
   const columns = [
@@ -40,20 +42,21 @@ const PVC = () => {
         <div>
           {row.metadata.name}
         </div>
+      ,
     },
     {
       name: "Namespace",
-      selector: (row) => row.metadata.namespace,
+      selector: (row) => row.metadata.namespace
     },
   ]
   return (
     <div className='component'>
-      <div>
-        <h1> All  PersistantVolumeClaims ( {pvc.length} PersistantVolumeClaims ) </h1>
-        <DataTable columns={columns} data={pvc} title={"PersistantVolumeClaims"} fixedHeader selectableRows highlightOnHover />
-      </div>
+      <>
+        <h1> All  limitranges ( {limitranges.length} limitranges ) </h1>
+        <DataTable columns={columns} data={limitranges} title={"limitranges"} fixedHeader selectableRows highlightOnHover />
+      </>
     </div>
   )
 }
 
-export default PVC
+export default LimitRanges

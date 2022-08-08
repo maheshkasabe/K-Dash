@@ -21,17 +21,7 @@
     font-weight: 900;
 }
 
-.workloads{
-    text-align: left;
-    margin-left: 30px;
-    color: blue;
-    font-size: large;
-    cursor: pointer;
-    justify-content: center;
-    align-items: center;
-}
-
-.configuration{
+.main{
     text-align: left;
     margin-left: 30px;
     color: blue;
@@ -39,31 +29,7 @@
     cursor: pointer;
 }
 
-.network{
-    text-align: left;
-    margin-left: 30px;
-    color: blue;
-    font-size: large;
-    cursor: pointer;
-}
-
-.storage{
-    text-align: left;
-    margin-left: 30px;
-    color: blue;
-    font-size: large;
-    cursor: pointer;
-}
-
-.others{
-    text-align: left;
-    margin-left: 30px;
-    color: blue;
-    font-size: large;
-    cursor: pointer;
-}
-
-.others a{
+.main a{
     text-decoration: none;
     color: blue;
 }

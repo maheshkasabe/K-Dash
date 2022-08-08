@@ -1,19 +1,36 @@
 import { useEffect, useState } from 'react';
 import axios from "axios"
 import DataTable from 'react-data-table-component'
-import "../Deployments/deployments.css"
+import "../main.css"
 
 const Services = () => {
   const [services, setServices] = useState([]);
 
+  const namespace = "argocd"
+
   useEffect(() => {
-    const url = "/api/v1/services/"
-    axios.get(url).then((response) => {
-      setServices(response.data.items);
-      console.log(response.data.items);
-    }).catch((err) => {
-      console.log(err);
-    })
+    const fnc = () => {
+      const url = "/api/v1/services/"
+      axios.get(url).then((response) => {
+        setServices(response.data.items);
+        console.log(response.data.items);
+      }).catch((err) => {
+        console.log(err);
+      })
+    }
+    const fnc1 = () => {
+      const url = `/api/v1/namespaces/${namespace}/services/`
+      axios.get(url).then((response) => {
+        setServices(response.data.items);
+        console.log(response.data.items);
+      }).catch((err) => {
+        console.log(err);
+      })
+    }
+
+    (
+      namespace ? fnc1() : fnc()
+    )
   }, [])
 
   const columns = [
@@ -21,7 +38,7 @@ const Services = () => {
       name: "Name",
       selector: (row) =>
         <div>
-          <a href='/'>{row.metadata.name}</a>
+          {row.metadata.name}
         </div>
       ,
     },
@@ -49,7 +66,7 @@ const Services = () => {
     },
   ]
   return (
-    <div className='deployments'>
+    <div className='component'>
       <div>
         <h1> All  Services ( {services.length} Services ) </h1>
         <DataTable columns={columns} data={services} title={"Services"} fixedHeader selectableRows highlightOnHover />
