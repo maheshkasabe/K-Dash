@@ -1,75 +1,95 @@
-import { useEffect,useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from "axios"
 import DataTable from 'react-data-table-component'
 import "../main.css"
+import { SelectContext } from '../../Context/Context';
+import Selector from '../LimitRanges/Selector';
 
 const Deployment = () => {
   const [deployments, setDeployments] = useState([]);
 
-  const namespace = "kubernetes-dashboard"
-  
+  const { namespace, setNamespace } = useContext(SelectContext);
+
   useEffect(() => {
-    const fnc= () => {
+    getfun();
+  })
+  const getfun = ((name,namespace) => {
+    const url = `/apis/apps/v1/namespaces/${namespace}/${name}/`
+    axios.get(url).then((response) => {
+      console.log(response.data)
+    }).catch((err) => {
+      console.log(err);
+    })
+  })
+
+  useEffect(() => {
+    const fnc = () => {
       const url = "/apis/apps/v1/deployments/"
       axios.get(url).then((response) => {
         setDeployments(response.data.items);
-        console.log(response.data.items);
+        //console.log(response.data.items);
       }).catch((err) => {
         console.log(err);
       })
     }
 
-    const fnc1= () => {
+    const fnc1 = () => {
       const url = `/apis/apps/v1/namespaces/${namespace}/deployments/`
       axios.get(url).then((response) => {
         setDeployments(response.data.items);
-        console.log(response.data.items);
+        //console.log(response.data.items);
       }).catch((err) => {
         console.log(err);
       })
     }
 
     (
-      namespace ? fnc1() : fnc() 
+      namespace ? fnc1() : fnc()
     )
-  }, [])
+
+  }, [namespace])
 
   const columns = [
     {
-      name : "Name",
-      selector: (row) =>  
-          <div>
-           {row.metadata.name}
-          </div>
+      name: "Name",
+      selector: (row) =>
+        <div>
+          {row.metadata.name}
+        </div>
       ,
     },
     {
-      name : "Namespace",
-      selector: (row) => row.metadata.namespace, 
+      name: "Namespace",
+      selector: (row) => row.metadata.namespace,
     },
     {
-      name : "Pods",
+      name: "Pods",
       selector: (row) => <>
-      {row.status.availableReplicas}/{row.status.replicas}
+        {row.status.availableReplicas}/{row.status.replicas}
       </>
     },
     {
-      name : "Replicas",
-      selector: (row) => row.status.replicas, 
+      name: "Replicas",
+      selector: (row) => row.status.replicas,
     },
     {
-      name : "Conditions",
+      name: "Conditions",
       selector: (row) => <>
-      {row.status.conditions[0].type} | {row.status.conditions[1].type}
+        {row.status.conditions[0].type} | {row.status.conditions[1].type}
       </>
     },
+    {
+      name: "︙",
+      selector: (row) => <p onClick={() => {getfun(row.metadata.name,row.metadata.namespace)}}>︙</p>
+    }
   ]
   return (
     <div className='component'>
-      <div>
-      <h1> All  Deployments ( {deployments.length} deployments ) </h1>
-      <DataTable columns={columns} data={deployments} title={"Deployments"} fixedHeader selectableRows highlightOnHover  />
+      <div className='subcom'>
+        <h1> All  Deployments ( {deployments.length} deployments )   </h1>
+        <Selector />
       </div>
+      <DataTable columns={columns} data={deployments} title={"Deployments"} fixedHeader selectableRows highlightOnHover />
     </div>
   )
 }

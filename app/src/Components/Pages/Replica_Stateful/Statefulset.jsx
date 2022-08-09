@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from "axios"
 import DataTable from 'react-data-table-component'
 import "../main.css"
+import Selector from '../LimitRanges/Selector';
+import { SelectContext } from '../../Context/Context';
 
 const Statefulset = () => {
     const [stateful, setStateful] = useState([]);
 
-    const namespace = "argocd"
+    const {namespace, setNamespace} = useContext(SelectContext);
 
     useEffect(() => {
 
@@ -33,7 +35,7 @@ const Statefulset = () => {
             namespace ? fnc1() : fnc()
         )
 
-    }, [])
+    }, [namespace])
 
     const columns = [
         {
@@ -62,10 +64,11 @@ const Statefulset = () => {
     ]
     return (
         <div className='component'>
-            <div>
+            <div className='subcom'>
                 <h1> All  Statefulsets ( {stateful.length} Statefullsets ) </h1>
+                <Selector />
+                </div>
                 <DataTable columns={columns} data={stateful} title={"StatefulSets"} fixedHeader selectableRows highlightOnHover />
-            </div>
         </div>
     )
 }

@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from "axios"
 import DataTable from 'react-data-table-component'
 import "../main.css"
+import Selector from '../LimitRanges/Selector';
+import { SelectContext } from '../../Context/Context';
 
 const Services = () => {
   const [services, setServices] = useState([]);
 
-  const namespace = "argocd"
+  const {namespace, setNamespace} = useContext(SelectContext);
 
   useEffect(() => {
     const fnc = () => {
@@ -31,7 +33,7 @@ const Services = () => {
     (
       namespace ? fnc1() : fnc()
     )
-  }, [])
+  }, [namespace])
 
   const columns = [
     {
@@ -67,10 +69,12 @@ const Services = () => {
   ]
   return (
     <div className='component'>
-      <div>
+      <div className='subcom'>
         <h1> All  Services ( {services.length} Services ) </h1>
+        <Selector />
+        </div>
         <DataTable columns={columns} data={services} title={"Services"} fixedHeader selectableRows highlightOnHover />
-      </div>
+      
     </div>
   )
 }

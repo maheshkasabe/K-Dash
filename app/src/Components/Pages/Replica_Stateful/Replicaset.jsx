@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from "axios"
 import DataTable from 'react-data-table-component'
 import "../main.css"
+import Selector from '../LimitRanges/Selector';
+import { SelectContext } from '../../Context/Context';
 
 const Replicaset = () => {
     const [replicas, setReplicas] = useState([]);
 
-    const namespace = "kubernetes-dashboard"
+    const { namespace, setNamespace } = useContext(SelectContext);
 
     useEffect(() => {
         const fnc = () => {
@@ -32,7 +34,7 @@ const Replicaset = () => {
             namespace ? fnc1() : fnc()
         )
 
-    }, [])
+    }, [namespace])
 
     const columns = [
         {
@@ -57,10 +59,12 @@ const Replicaset = () => {
     ]
     return (
         <div className='component'>
-            <div>
+            <div className='subcom'>
                 <h1> All  ReplicaSets ( {replicas.length} ReplicaSets ) </h1>
-                <DataTable columns={columns} data={replicas} title={"ReplicaSets"} fixedHeader selectableRows highlightOnHover />
+                <Selector />
             </div>
+            <DataTable columns={columns} data={replicas} title={"ReplicaSets"} fixedHeader selectableRows highlightOnHover />
+
         </div>
     )
 }

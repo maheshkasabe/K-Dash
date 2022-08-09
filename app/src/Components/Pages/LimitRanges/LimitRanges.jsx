@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState,useContext } from 'react';
 import axios from "axios"
 import DataTable from 'react-data-table-component'
 import "../main.css"
+import Selector from './Selector';
+import { SelectContext } from '../../Context/Context';
 
 const LimitRanges = () => {
   const [limitranges, setLlimitranges] = useState([]);
 
-  const namespace = "kubernetes-dashboard"
+  const {namespace, setNamespace} = useContext(SelectContext);
 
   useEffect(() => {
     const fnc = () => {
@@ -33,7 +35,7 @@ const LimitRanges = () => {
       namespace ? fnc1() : fnc()
     )
 
-  }, [])
+  }, [namespace])
 
   const columns = [
     {
@@ -51,10 +53,11 @@ const LimitRanges = () => {
   ]
   return (
     <div className='component'>
-      <>
-        <h1> All  limitranges ( {limitranges.length} limitranges ) </h1>
-        <DataTable columns={columns} data={limitranges} title={"limitranges"} fixedHeader selectableRows highlightOnHover />
-      </>
+      <div className='subcom'>
+        <h1> All  Limitranges ( {limitranges.length} Limitranges ) </h1>
+        <Selector />
+        </div>
+        <DataTable columns={columns} data={limitranges} title={"Limitranges"} fixedHeader selectableRows highlightOnHover />
     </div>
   )
 }

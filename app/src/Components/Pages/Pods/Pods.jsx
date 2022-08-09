@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from "axios"
 import "./pods.css"
+import { SelectContext } from '../../Context/Context';
+import Selector from '../LimitRanges/Selector';
 
 const Pods = () => {
   const [pods, setPods] = useState([])
 
-  const namespace = "kubernetes-dashboard"
+  const {namespace, setNamespace} = useContext(SelectContext);
   
   useEffect(() => {
     const fnc= () => {
@@ -32,12 +34,13 @@ const Pods = () => {
       namespace ? fnc1() : fnc() 
     )
 
-  }, [])
+  }, [namespace])
 
   return (
     <div className='pods'>
       <div className='header'>
         <h1>All Pods ( {pods.length} ) Pods </h1>
+        <Selector /> 
       </div>
 
       <div className='podlist'>
@@ -45,7 +48,7 @@ const Pods = () => {
           pods.map((pod) => {
             return (
               <div className='pod'>
-                <p>Pod :{pod.metadata.name} </p>
+                <p>Pod : {pod.metadata.name} </p>
                 <p>Namespace : {pod.metadata.namespace}</p>
                 <p>Status : {pod.status.phase}  ({pod.spec.containers.length})</p>
                 <p>Node   : {pod.spec.nodeName}</p>

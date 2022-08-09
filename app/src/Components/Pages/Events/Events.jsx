@@ -1,20 +1,42 @@
-import { useEffect,useState } from 'react';
+import { useEffect,useState,useContext } from 'react';
 import axios from "axios"
 import DataTable from 'react-data-table-component'
 import "../main.css"
+import Selector from '../LimitRanges/Selector';
+import { SelectContext } from '../../Context/Context';
 
 const Events = () => {
   const [events, setEvents] = useState([]);
+
+  const {namespace, setNamespace} = useContext(SelectContext);
   
   useEffect(() => {
-    const url = "/api/v1/events"
-    axios.get(url).then((response) => {
-      setEvents(response.data.items);
-      console.log(response.data.items);
-    }).catch((err) => {
-      console.log(err);
-    })
-  }, [])
+
+    const fnc = () => {
+      const url = "/api/v1/events"
+      axios.get(url).then((response) => {
+        setEvents(response.data.items);
+        console.log(response.data.items);
+      }).catch((err) => {
+        console.log(err);
+      })
+
+    }
+    const fnc1 = () => {
+      const url = `/api/v1/namespaces/${namespace}/events`
+      axios.get(url).then((response) => {
+        setEvents(response.data.items);
+        console.log(response.data.items);
+      }).catch((err) => {
+        console.log(err);
+      })
+    }
+
+    (
+      namespace ? fnc1() : fnc() 
+    )
+
+  }, [namespace])
 
   const columns = [
     {
@@ -44,10 +66,11 @@ const Events = () => {
   ]
   return (
     <div className='events'>
-      <div>
+      <div className='subcom'>
       <h1> All  Events ( {events.length} Events ) </h1>
-      <DataTable columns={columns} data={events} title={"Events"} fixedHeader selectableRows highlightOnHover />
+      <Selector />
       </div>
+      <DataTable columns={columns} data={events} title={"Events"} fixedHeader selectableRows highlightOnHover />
 
     </div>
   )

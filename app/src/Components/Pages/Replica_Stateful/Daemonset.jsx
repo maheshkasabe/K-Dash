@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from "axios"
 import DataTable from 'react-data-table-component'
 import "../main.css"
+import Selector from '../LimitRanges/Selector';
+import { SelectContext } from '../../Context/Context';
 
 const Daemonset = () => {
     const [daemonsets, setDaemonsets] = useState([]);
 
-    const namespace = "kubernetes-dashboard"
+    const {namespace, setNamespace} = useContext(SelectContext);
 
     useEffect(() => {
         const fnc = () => {
@@ -32,7 +34,7 @@ const Daemonset = () => {
             namespace ? fnc1() : fnc()
         )
 
-    }, [])
+    }, [namespace])
 
     const columns = [
         {
@@ -57,10 +59,11 @@ const Daemonset = () => {
     ]
     return (
         <div className='component'>
-            <div>
+            <div className='subcom'>
                 <h1> All  Daemonsets ( {daemonsets.length} Daemonsets ) </h1>
+                <Selector />
+                </div>
                 <DataTable columns={columns} data={daemonsets} title={"Daemonsets"} fixedHeader selectableRows highlightOnHover />
-            </div>
         </div>
     )
 }

@@ -12,6 +12,14 @@
     color: dodgerblue;
 }
 
+.subcom{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 50px;
+}
+
 .labels{
     display: flex;
     flex-direction: column;
@@ -36,3 +44,11 @@
 .pid{
     color: dodgerblue;
 }
+
+.selector select{
+    height: 30px;
+    width: 200px;
+    font-size: medium;
+    border: 1.5px solid  blue;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+} 

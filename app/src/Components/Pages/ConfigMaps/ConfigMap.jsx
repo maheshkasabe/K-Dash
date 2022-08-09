@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from "axios"
 import DataTable from 'react-data-table-component'
 import "../main.css"
+import { SelectContext } from '../../Context/Context';
+import Selector from '../LimitRanges/Selector';
 
 const ConfigMap = () => {
     const [configmaps, seConfigmaps] = useState([]);
 
-    const namespace = "kubernetes-dashboard"
+    const {namespace, setNamespace} = useContext(SelectContext);
 
     useEffect(() => {
       const fnc= () => {
@@ -33,7 +35,7 @@ const ConfigMap = () => {
         namespace ? fnc1() : fnc() 
       )
 
-    }, [])
+    }, [namespace])
   
     const columns = [
       {
@@ -62,10 +64,11 @@ const ConfigMap = () => {
     ]
     return (
         <div className='component'>
-            <>
+            <div className='subcom'>
                 <h1> All  Configmaps ( {configmaps.length} Configmaps ) </h1>
-                <DataTable columns={columns} data={configmaps} title={"Configmaps"} fixedHeader selectableRows highlightOnHover />
-            </>
+                <Selector />
+            </div>
+            <DataTable columns={columns} data={configmaps} title={"Configmaps"} fixedHeader selectableRows highlightOnHover />
         </div>
     )
 }

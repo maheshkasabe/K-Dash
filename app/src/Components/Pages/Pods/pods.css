@@ -1,7 +1,5 @@
 .pods{
     display: flex;
-    justify-content: center;
-    align-items: center;
     border: 1px solid lightgray;
     border-radius: 10px;
     background-color: white;
@@ -13,13 +11,15 @@
 
 .pods .header{
     display: flex;
-    flex-direction: column;
-    text-align: left;
-    float: left;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 50px;
 }
 
 .pods .header h1{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: dodgerblue;
 }
 
 .podlist{
@@ -33,7 +33,6 @@
 
 .pod{
     width: 250px;
-    height: 330px;
     margin: 15px;
     border: 1px solid blue;
     border-radius: 10px;
