@@ -56,6 +56,10 @@ const Replicaset = () => {
             name: "Ready",
             selector: (row) => row.status.readyReplicas,
         },
+        {
+            name: "︙",
+            selector: (row) => <button className='btn'>︙</button>
+          }
     ]
     return (
         <div className='component'>

@@ -61,6 +61,10 @@ const ConfigMap = () => {
           )
         }))
       },
+      {
+        name: "︙",
+        selector: (row) => <button className='btn'>︙</button>
+      }
     ]
     return (
         <div className='component'>

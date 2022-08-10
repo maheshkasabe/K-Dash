@@ -51,4 +51,22 @@
     font-size: medium;
     border: 1.5px solid  blue;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-} 
+}
+
+.btn {
+    border: none;
+    cursor: pointer;
+    background-color: white;
+}
+
+.chart {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    justify-content: space-evenly;
+    border: 1px solid dodgerblue;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+    position: relative;
+}

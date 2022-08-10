@@ -65,6 +65,10 @@ const Endpoint = () => {
         )
       }))
     },
+    {
+      name: "︙",
+      selector: (row) => <button className='btn'>︙</button>
+    }
   ]
   return (
     <div className='component'>

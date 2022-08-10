@@ -71,6 +71,10 @@ const Secrets = () => {
       name: "Type",
       selector: (row) => row.type,
     },
+    {
+      name: "︙",
+      selector: (row) => <button className='btn'>︙</button>
+    }
   ]
   return (
     <div className='component'>

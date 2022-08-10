@@ -48,11 +48,15 @@ const PV = () => {
     {
       name: "Namespace",
       selector: (row) => row.metadata.namespace,
+    },
+    {
+      name: "︙",
+      selector: (row) => <button className='btn'>︙</button>
     }
   ]
   return (
     <div className='component'>
-      <div>
+      <div className='subcom'>
         <h1> All  PersistantVolume ( {pv.length} PersistantVolume ) </h1>
         <Selector />
         </div>

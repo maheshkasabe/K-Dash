@@ -56,6 +56,10 @@ const Daemonset = () => {
             name: "Pods",
             selector: (row) => row.status.numberAvailable,
         },
+        {
+            name: "︙",
+            selector: (row) => <button className='btn'>︙</button>
+          }
     ]
     return (
         <div className='component'>

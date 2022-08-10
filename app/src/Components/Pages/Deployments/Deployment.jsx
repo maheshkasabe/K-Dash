@@ -10,24 +10,12 @@ const Deployment = () => {
 
   const { namespace, setNamespace } = useContext(SelectContext);
 
-  useEffect(() => {
-    getfun();
-  })
-  const getfun = ((name,namespace) => {
-    const url = `/apis/apps/v1/namespaces/${namespace}/${name}/`
-    axios.get(url).then((response) => {
-      console.log(response.data)
-    }).catch((err) => {
-      console.log(err);
-    })
-  })
-
-  useEffect(() => {
+  useEffect((name) => {
     const fnc = () => {
       const url = "/apis/apps/v1/deployments/"
       axios.get(url).then((response) => {
         setDeployments(response.data.items);
-        //console.log(response.data.items);
+        
       }).catch((err) => {
         console.log(err);
       })
@@ -80,7 +68,7 @@ const Deployment = () => {
     },
     {
       name: "︙",
-      selector: (row) => <p onClick={() => {getfun(row.metadata.name,row.metadata.namespace)}}>︙</p>
+      selector: (row) => <button className='btn'>︙</button>
     }
   ]
   return (

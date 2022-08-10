@@ -48,6 +48,10 @@ const RQ = () => {
       name: "Namespace",
       selector: (row) => row.metadata.namespace,
     },
+    {
+      name: "︙",
+      selector: (row) => <button className='btn'>︙</button>
+    }
   ]
   return (
     <div className='component'>
