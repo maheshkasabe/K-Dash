@@ -9,3 +9,5 @@ WORKDIR /home/app
 RUN yarn install
 
 CMD ["yarn","run","start"]
+
+RUN kubectl proxy --www=.
