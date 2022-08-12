@@ -62,6 +62,7 @@
 .chart {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     width: auto;
     justify-content: space-evenly;
     border: 1px solid dodgerblue;
