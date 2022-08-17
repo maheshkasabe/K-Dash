@@ -4,6 +4,12 @@ Build with React & JavaScript. Real-time Monitoring of Your Kubernetes Cluster w
 
 ![alt tag](https://github.com/Mahesh-Kasabe/K-Dash/blob/master/Images/overview.png?raw=true)
 
+![alt tag](https://github.com/Mahesh-Kasabe/K-Dash/blob/master/Images/secrets.png?raw=true)
+
+![alt tag](https://github.com/Mahesh-Kasabe/K-Dash/blob/master/Images/configmaps.png?raw=true)
+
+![alt tag](https://github.com/Mahesh-Kasabe/K-Dash/blob/master/Images/events.png?raw=true)
+
 ## Description 
 
 K-Dash is Browser Based Real-time monitoring tool for Kubernetes  Cluster 
