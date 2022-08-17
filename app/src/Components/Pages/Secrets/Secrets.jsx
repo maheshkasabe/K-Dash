@@ -4,11 +4,14 @@ import DataTable from 'react-data-table-component'
 import "../main.css"
 import Selector from '../LimitRanges/Selector';
 import { SelectContext } from '../../Context/Context';
+import Modal1 from '../../Modal/Modal1';
 
 const Secrets = () => {
   const [secrets, setSecrets] = useState([]);
+  const [info, setInfo] = useState([])
+  const [state, setState] = useState(false)
 
-  const {namespace, setNamespace} = useContext(SelectContext);
+  const { namespace, setNamespace } = useContext(SelectContext);
 
   useEffect(() => {
     const fnc = () => {
@@ -73,16 +76,29 @@ const Secrets = () => {
     },
     {
       name: "︙",
-      selector: (row) => <button className='btn'>︙</button>
+      selector: (row) => <button onClick={() => { handle(row) }} className='btn'>︙</button>
     }
   ]
+
+  const handle = (metadata) => {
+    setState(true)
+    setInfo(metadata)
+    console.log(metadata)
+  }
   return (
     <div className='component'>
       <div className='subcom'>
         <h1> All  Secrets ( {secrets.length} Secrets ) </h1>
         <Selector />
       </div>
-      <DataTable columns={columns} data={secrets} title={"Secrets"} fixedHeader selectableRows highlightOnHover />
+      <div className='Modal'>
+      <DataTable columns={columns} data={secrets}  fixedHeader selectableRows highlightOnHover />
+      {
+        state && (
+          <Modal1 info={info} setState={setState} />
+        )
+      }
+    </div>
     </div>
   )
 }

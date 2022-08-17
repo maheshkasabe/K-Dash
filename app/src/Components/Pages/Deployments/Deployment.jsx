@@ -4,9 +4,12 @@ import DataTable from 'react-data-table-component'
 import "../main.css"
 import { SelectContext } from '../../Context/Context';
 import Selector from '../LimitRanges/Selector';
+import Modal from '../../Modal/Modal';
 
 const Deployment = () => {
   const [deployments, setDeployments] = useState([]);
+  const [info , setInfo] = useState([])
+  const [state, setState] = useState(false)
 
   const { namespace, setNamespace } = useContext(SelectContext);
 
@@ -15,7 +18,7 @@ const Deployment = () => {
       const url = "/apis/apps/v1/deployments/"
       axios.get(url).then((response) => {
         setDeployments(response.data.items);
-        
+        //console.log(response.data.items);
       }).catch((err) => {
         console.log(err);
       })
@@ -68,16 +71,31 @@ const Deployment = () => {
     },
     {
       name: "︙",
-      selector: (row) => <button className='btn'>︙</button>
+      selector: (row) => <button onClick={() => {handle(row)}} className='btn'>︙</button>
     }
   ]
+
+  const handle = (metadata) => {
+    setState(true)
+    setInfo(metadata)
+    console.log(metadata)
+  }
   return (
     <div className='component'>
       <div className='subcom'>
         <h1> All  Deployments ( {deployments.length} deployments )   </h1>
         <Selector />
+
       </div>
-      <DataTable columns={columns} data={deployments} title={"Deployments"} fixedHeader selectableRows highlightOnHover />
+      <div className='Modal'>
+
+      <DataTable columns={columns} data={deployments} fixedHeader selectableRows highlightOnHover />
+      {
+          state && (
+            <Modal info={info} setState={setState} />
+          )
+        }
+      </div>
     </div>
   )
 }

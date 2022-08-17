@@ -8,7 +8,7 @@
     border: 1px solid lightgray;
     text-decoration: none;
     padding-bottom: 450px;
-    position: static;
+    position: relative;
     background-color: white;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }

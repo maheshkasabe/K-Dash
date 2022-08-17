@@ -6,6 +6,8 @@
     margin: 20px;
     border-radius: 10px;
     background-color: white;
+    display: flex;
+    flex-direction: column;
 }
 .component h1{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -59,10 +61,19 @@
     background-color: white;
 }
 
+.overview{
+    width: 80%;
+    height: 100%;
+    border: 1px solid lightgray;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 10px;
+    background-color: white;
+}
+
 .chart {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     width: auto;
     justify-content: space-evenly;
     border: 1px solid dodgerblue;
@@ -70,4 +81,9 @@
     margin: 5px;
     padding: 5px;
     position: relative;
+}
+
+.Modal{
+    display: flex;
+    flex-direction: row;
 }

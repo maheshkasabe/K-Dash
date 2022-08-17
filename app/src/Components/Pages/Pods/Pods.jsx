@@ -38,7 +38,7 @@ const Pods = () => {
 
   return (
     <div className='pods'>
-      <div className='header'>
+      <div className='head'>
         <h1>All Pods ( {pods.length} ) Pods </h1>
         <Selector /> 
       </div>

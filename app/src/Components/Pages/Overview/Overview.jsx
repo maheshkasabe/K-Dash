@@ -249,7 +249,7 @@ const Overview = () => {
   }
 
   return (
-    <div className='component'>
+    <div className='overview'>
       <div className='subcom'>
         <h1> Overview </h1>
         <Selector />
