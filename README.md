@@ -2,7 +2,7 @@
 
 Build with React & JavaScript. Real-time Monitoring of Your Kubernetes Cluster with Kubernetes API.
 
-![alt text] (https://github.com/Mahesh-Kasabe/K-Dash/blob/master/Images/overview.png)
+![alt text] (https://github.com/Mahesh-Kasabe/K-Dash/blob/master/Images/overview.png?raw=true)
 
 ## Description 
 
