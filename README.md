@@ -1,5 +1,7 @@
 # K-Dash : Kubernetes Monitoring Tool 
 
+## [![Docker CI](https://github.com/Mahesh-Kasabe/K-Dash/actions/workflows/ci-cd.yml/badge.svg?branch=main)](https://github.com/Mahesh-Kasabe/K-Dash/actions/workflows/ci-cd.yml)
+
 Build with React & JavaScript. Real-time Monitoring of Your Kubernetes Cluster with Kubernetes API.
 
 ![alt tag](https://github.com/Mahesh-Kasabe/K-Dash/blob/master/Images/overview.png?raw=true)
