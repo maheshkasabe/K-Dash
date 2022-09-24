@@ -4,17 +4,17 @@ Build with React & JavaScript. Real-time Monitoring of Your Kubernetes Cluster w
 
 ![alt tag](https://github.com/Mahesh-Kasabe/K-Dash/blob/master/Images/overview.png?raw=true)
 
-![alt tag](https://github.com/Mahesh-Kasabe/K-Dash/blob/master/Images/secrets.png?raw=true)
-
-![alt tag](https://github.com/Mahesh-Kasabe/K-Dash/blob/master/Images/configmaps.png?raw=true)
-
-![alt tag](https://github.com/Mahesh-Kasabe/K-Dash/blob/master/Images/events.png?raw=true)
-
 ## What is it ?
 
 -------------------------------
 
 K-Dash is Browser Based Real-time monitoring tool for Kubernetes  Cluster .The general idea behind the above submitted code sample is , it is a Browser based kubernetes cluster monitoring web application . Which hop over the Cluster data in front of your desktop by fetching the data from Kubernetes (Kubectl) API . The Web Application is made up of Javascript on the ReactJS framework , on a Broader spectrum  the application fetches and puts the essential information on the screen like Events , Namspaces , storage , nodes , pods , configmap , secrets , resource quotas , deployments , endpoints etc... , in a tabular form . The Overview Page shows the overall (big picture ) of total running pods using chartJs  and events (in tabel form) , You can also add Namespaces in the cluster through API . The Secrets and ConfigmapPage also shows you  the neccesary Keys and passwords in order to quickly locate and copy your  credentials . This are all the functions i have put together in order to be able to see the big picture of any kuberntes cluster in a quick way .
+
+![alt tag](https://github.com/Mahesh-Kasabe/K-Dash/blob/master/Images/secrets.png?raw=true)
+
+![alt tag](https://github.com/Mahesh-Kasabe/K-Dash/blob/master/Images/configmaps.png?raw=true)
+
+![alt tag](https://github.com/Mahesh-Kasabe/K-Dash/blob/master/Images/events.png?raw=true)
 
 ## Technologies Used
 
