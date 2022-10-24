@@ -9,13 +9,13 @@ spec:
   selector:
     matchLabels:
       app: kdash
-  template: 
+  template:
     metadata:
       labels:
         app: kdash
     spec:
       containers:
-        - image: maheshkasbe/kdash:latest
+        - image: maheshkasbe/kdash:master
           name: kdash-container
           ports:
             - containerPort: 3000
