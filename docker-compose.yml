@@ -1,0 +1,12 @@
+version: '3'
+
+networks:
+  app:
+services:
+  frontend:
+    image: docker.io/maheshkasbe/k-dash:latest
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - app
