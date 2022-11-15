@@ -1,6 +1,7 @@
 import React from 'react'
 import "./modal.css"
 
+
 const Configmap_Modal = ({ info, setState }) => {
     return (
         <div className='modal'>
