@@ -11,7 +11,7 @@ const Replicaset = () => {
     const { namespace, setNamespace } = useContext(SelectContext);
 
     useEffect(() => {
-        const fnc = () => {
+        const getAllreplicasets = () => {
             const url = "/apis/apps/v1/replicasets/"
             axios.get(url).then((response) => {
                 setReplicas(response.data.items);
@@ -20,7 +20,7 @@ const Replicaset = () => {
                 console.log(err);
             })
         }
-        const fnc1 = () => {
+        const getReplicaset = () => {
             const url = `/apis/apps/v1/namespaces/${namespace}/replicasets/`
             axios.get(url).then((response) => {
                 setReplicas(response.data.items);
@@ -31,7 +31,7 @@ const Replicaset = () => {
         }
 
         (
-            namespace ? fnc1() : fnc()
+            namespace ? getReplicaset() : getAllreplicasets()
         )
 
     }, [namespace])

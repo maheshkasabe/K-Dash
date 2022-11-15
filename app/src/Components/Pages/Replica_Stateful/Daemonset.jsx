@@ -9,29 +9,29 @@ const Daemonset = () => {
     const [daemonsets, setDaemonsets] = useState([]);
 
     const {namespace, setNamespace} = useContext(SelectContext);
+    
+    const getAlldemonsets = () => {
+        const url = "/apis/apps/v1/daemonsets/"
+        axios.get(url).then((response) => {
+            setDaemonsets(response.data.items);
+            console.log(response.data.items);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+    const getDemonset = () => {
+        const url = `/apis/apps/v1/namespaces/${namespace}/daemonsets/`
+        axios.get(url).then((response) => {
+            setDaemonsets(response.data.items);
+            console.log(response.data.items);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
 
     useEffect(() => {
-        const fnc = () => {
-            const url = "/apis/apps/v1/daemonsets/"
-            axios.get(url).then((response) => {
-                setDaemonsets(response.data.items);
-                console.log(response.data.items);
-            }).catch((err) => {
-                console.log(err);
-            })
-        }
-        const fnc1 = () => {
-            const url = `/apis/apps/v1/namespaces/${namespace}/daemonsets/`
-            axios.get(url).then((response) => {
-                setDaemonsets(response.data.items);
-                console.log(response.data.items);
-            }).catch((err) => {
-                console.log(err);
-            })
-        }
-
         (
-            namespace ? fnc1() : fnc()
+            namespace ? getDemonset() : getAlldemonsets()
         )
 
     }, [namespace])

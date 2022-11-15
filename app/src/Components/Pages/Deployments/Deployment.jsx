@@ -13,29 +13,28 @@ const Deployment = () => {
 
   const { namespace, setNamespace } = useContext(SelectContext);
 
-  useEffect((name) => {
-    const fnc = () => {
-      const url = "/apis/apps/v1/deployments/"
-      axios.get(url).then((response) => {
-        setDeployments(response.data.items);
-        //console.log(response.data.items);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
+  const getAlldeployments = () => {
+    const url = "/apis/apps/v1/deployments/"
+    axios.get(url).then((response) => {
+      setDeployments(response.data.items);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
 
-    const fnc1 = () => {
-      const url = `/apis/apps/v1/namespaces/${namespace}/deployments/`
-      axios.get(url).then((response) => {
-        setDeployments(response.data.items);
-        //console.log(response.data.items);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
+  const getDeployment = () => {
+    const url = `/apis/apps/v1/namespaces/${namespace}/deployments/`
+    axios.get(url).then((response) => {
+      setDeployments(response.data.items);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+
+  useEffect(() => {
 
     (
-      namespace ? fnc1() : fnc()
+      namespace ? getDeployment() : getAlldeployments()
     )
 
   }, [namespace])

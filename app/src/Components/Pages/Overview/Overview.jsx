@@ -9,13 +9,14 @@ import { Chart as ChartJS } from 'chart.js/auto';
 
 const Overview = () => {
   const [events, setEvents] = useState([]);
+
   const [deployments, setDeployments] = useState([]);
   const [pods, setPods] = useState([])
   const [daemonsets, setDaemonsets] = useState([]);
   const [replicas, setReplicas] = useState([]);
   const [stateful, setStateful] = useState([]);
 
-  const { namespace, setNamespace } = useContext(SelectContext);
+  const { namespace } = useContext(SelectContext);
 
   useEffect(() => {
 
@@ -36,7 +37,6 @@ const Overview = () => {
         console.log(err);
       })
     }
-
 
     //daemonsets 
     const fnc2 = () => {
@@ -178,75 +178,79 @@ const Overview = () => {
     },
   ]
 
-  const data1 = {
-    labels: [
-      `Pods (${pods.length})`,
-    ],
-    datasets: [{
-      label: 'Pods',
-      data: [pods.length],
-      backgroundColor: [
-        'rgb(54, 162, 235)'
-      ],
-      hoverOffset: 4
-    }]
-  }
+  console.log(pods)
 
-  const data2 = {
-    labels: [
-      `Deployments (${deployments.length})`,
-    ],
-    datasets: [{
-      label: 'Pods',
-      data: [deployments.length],
-      backgroundColor: [
-        'rgb(54, 162, 235)'
+  const datas= [
+    {
+      labels : [
+        `Pods (${pods.length})`,
       ],
-      hoverOffset: 4
-    }]
-  }
-
-  const data3 = {
-    labels: [
-      `StatefulSets (${stateful.length})`,
-    ],
-    datasets: [{
-      label: 'Pods',
-      data: [stateful.length],
-      backgroundColor: [
-        'rgb(54, 162, 235)'
+      datasets: [{
+        label: 'Pods',
+        data: [pods.length],
+        backgroundColor: [
+          'rgb(54, 162, 235)'
+        ],
+        hoverOffset: 4
+      }]
+    },
+  
+      {
+      labels: [
+        `Deployments (${deployments.length})`,
       ],
-      hoverOffset: 4
-    }]
-  }
-
-  const data4 = {
-    labels: [
-      `ReplicaSets (${replicas.length})`,
-    ],
-    datasets: [{
-      label: 'Pods',
-      data: [replicas.length],
-      backgroundColor: [
-        'rgb(54, 162, 235)'
+      datasets: [{
+        label: 'Pods',
+        data: [deployments.length],
+        backgroundColor: [
+          'rgb(54, 162, 235)'
+        ],
+        hoverOffset: 4
+      }]
+    } ,
+  
+    {
+      labels: [
+        `StatefulSets (${stateful.length})`,
       ],
-      hoverOffset: 4
-    }]
-  }
-
-  const data5 = {
-    labels: [
-      `DaemonSets (${daemonsets.length})`,
-    ],
-    datasets: [{
-      label: 'Pods',
-      data: [daemonsets.length],
-      backgroundColor: [
-        'rgb(54, 162, 235)'
+      datasets: [{
+        label: 'Pods',
+        data: [stateful.length],
+        backgroundColor: [
+          'rgb(54, 162, 235)'
+        ],
+        hoverOffset: 4
+      }]
+    } ,
+  
+     {
+      labels: [
+        `ReplicaSets (${replicas.length})`,
       ],
-      hoverOffset: 4
-    }]
-  }
+      datasets: [{
+        label: 'Pods',
+        data: [replicas.length],
+        backgroundColor: [
+          'rgb(54, 162, 235)'
+        ],
+        hoverOffset: 4
+      }]
+    } ,
+  
+    {
+      labels: [
+        `DaemonSets (${daemonsets.length})`,
+      ],
+      datasets: [{
+        label: 'Pods',
+        data: [daemonsets.length],
+        backgroundColor: [
+          'rgb(54, 162, 235)'
+        ],
+        hoverOffset: 4
+      }]
+    } 
+  ]
 
   return (
     <div className='overview'>
@@ -254,29 +258,19 @@ const Overview = () => {
         <h1> Overview </h1>
         <Selector />
       </div>
+
       <div className='chart'>
-        <div style={ { width: 200 } }>
-        <Doughnut data={data1 } />
-        </div>
-
-        <div style={ { width: 200 } }>
-        <Doughnut data={data2 } />
-        </div>
-
-        <div style={ { width: 200 } }>
-        <Doughnut data={data3 } />
-        </div>
-
-        <div style={ { width: 200 } }>
-        <Doughnut data={data4 } />
-        </div>
-
-        <div style={ { width: 200 } }>
-        <Doughnut data={data5 } />
-        </div>
-
+        {
+          datas.map((data) => {
+            return (
+              <div style={ { width: 200 } }>
+              <Doughnut data={data} />
+              </div>
+            )
+          })
+        }
       </div>
-      <DataTable columns={columns} data={events} title={"Events"} fixedHeader selectableRows highlightOnHover />
+          <DataTable columns={columns} data={events} title={"Events"} fixedHeader selectableRows highlightOnHover />
     </div>
 
   )

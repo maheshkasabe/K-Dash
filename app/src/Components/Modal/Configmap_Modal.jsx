@@ -1,7 +1,7 @@
 import React from 'react'
 import "./modal.css"
 
-const Modal1 = ({ info, setState }) => {
+const Configmap_Modal = ({ info, setState }) => {
     return (
         <div className='modal'>
             <div className='content'>
@@ -36,4 +36,4 @@ const Modal1 = ({ info, setState }) => {
     )
 }
 
-export default Modal1
+export default Configmap_Modal

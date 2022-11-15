@@ -9,29 +9,28 @@ const Services = () => {
   const [services, setServices] = useState([]);
 
   const {namespace, setNamespace} = useContext(SelectContext);
+  const getAllservices = () => {
+    const url = "/api/v1/services/"
+    axios.get(url).then((response) => {
+      setServices(response.data.items);
+      console.log(response.data.items);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+  const getService = () => {
+    const url = `/api/v1/namespaces/${namespace}/services/`
+    axios.get(url).then((response) => {
+      setServices(response.data.items);
+      console.log(response.data.items);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
 
   useEffect(() => {
-    const fnc = () => {
-      const url = "/api/v1/services/"
-      axios.get(url).then((response) => {
-        setServices(response.data.items);
-        console.log(response.data.items);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
-    const fnc1 = () => {
-      const url = `/api/v1/namespaces/${namespace}/services/`
-      axios.get(url).then((response) => {
-        setServices(response.data.items);
-        console.log(response.data.items);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
-
     (
-      namespace ? fnc1() : fnc()
+      namespace ? getService() : getAllservices()
     )
   }, [namespace])
 

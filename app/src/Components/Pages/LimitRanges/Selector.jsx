@@ -5,7 +5,7 @@ import { SelectContext } from '../../Context/Context';
 const Selector = () => {
   const [namespaces, setNamespaces] = useState([]);
 
-  const { namespace, setNamespace } = useContext(SelectContext);
+  const { setNamespace } = useContext(SelectContext);
 
   const handle = (e) => {
     setNamespace(e.target.value);
@@ -33,7 +33,6 @@ const Selector = () => {
             )
           })
         }
-
       </select>
     </div>
   )

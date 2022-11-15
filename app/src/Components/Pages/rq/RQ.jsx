@@ -9,29 +9,30 @@ const RQ = () => {
   const [rq, setRQ] = useState([]);
 
   const {namespace, setNamespace} = useContext(SelectContext);
+  
+  const getAllresourcequotas = () => {
+    const url = "/api/v1/resourcequotas/"
+    axios.get(url).then((response) => {
+      setRQ(response.data.items);
+      console.log(response.data.items);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+  const getResourceQuota = () => {
+    const url = `/api/v1/namespaces/${namespace}/resourcequotas/`
+    axios.get(url).then((response) => {
+      setRQ(response.data.items);
+      console.log(response.data.items);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
 
   useEffect(() => {
-    const fnc = () => {
-      const url = "/api/v1/resourcequotas/"
-      axios.get(url).then((response) => {
-        setRQ(response.data.items);
-        console.log(response.data.items);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
-    const fnc1 = () => {
-      const url = `/api/v1/namespaces/${namespace}/resourcequotas/`
-      axios.get(url).then((response) => {
-        setRQ(response.data.items);
-        console.log(response.data.items);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
 
     (
-      namespace ? fnc1() : fnc()
+      namespace ? getResourceQuota() : getAllresourcequotas()
     )
 
   }, [namespace])

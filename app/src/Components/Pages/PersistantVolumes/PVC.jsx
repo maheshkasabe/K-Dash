@@ -11,7 +11,7 @@ const PVC = () => {
   const {namespace, setNamespace} = useContext(SelectContext);
 
   useEffect(() => {
-    const fnc = () => {
+    const getAllpvcs = () => {
       const url = "/api/v1/persistentvolumeclaims/"
       axios.get(url).then((response) => {
         setPvc(response.data.items);
@@ -20,7 +20,7 @@ const PVC = () => {
         console.log(err);
       })
     }
-    const fnc1 = () => {
+    const getPVC = () => {
       const url = `/api/v1/namespaces/${namespace}/persistentvolumeclaims/`
       axios.get(url).then((response) => {
         setPvc(response.data.items);
@@ -31,7 +31,7 @@ const PVC = () => {
     }
 
     (
-      namespace ? fnc1() : fnc()
+      namespace ? getPVC() : getAllpvcs()
     )
   }, [namespace])
 

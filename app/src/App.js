@@ -4,12 +4,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { Deployment,Pods,Secrets,RQ,Services,Endpoint,Namespace, Events,PV, PVC,Replicaset,Statefulset,Daemonset,ConfigMap,LimitRanges,Overview } from "./Components"
 import { SelectContext } from './Components/Context/Context';
 import { useState } from 'react';
+import Selector from './Components/Pages/LimitRanges/Selector';
 
 function App() {
   const [namespace, setNamespace] = useState("");
+
   return (
     <div className="App">
-      <SelectContext.Provider value={{namespace, setNamespace}}>
+    <SelectContext.Provider value={{namespace, setNamespace }}>
         <BrowserRouter>
           <Routes>
 
@@ -30,6 +32,8 @@ function App() {
             <Route path='/pv' element={<> <Home /> <PV />  </>} />
             <Route path='/namespaces' element={<> <Home /> <Namespace /> </>} />
             <Route path='/events' element={<> <Home /> <Events />  </>} />
+            
+            <Route path='/test' element={<> <Home /> <Selector />  </>} />
 
           </Routes>
         </BrowserRouter>

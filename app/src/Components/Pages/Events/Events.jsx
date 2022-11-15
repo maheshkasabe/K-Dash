@@ -9,31 +9,30 @@ const Events = () => {
   const [events, setEvents] = useState([]);
 
   const {namespace, setNamespace} = useContext(SelectContext);
-  
+  const getAllevents = () => {
+    const url = "/api/v1/events"
+    axios.get(url).then((response) => {
+      setEvents(response.data.items);
+      console.log(response.data.items);
+    }).catch((err) => {
+      console.log(err);
+    })
+
+  }
+  const getEvent = () => {
+    const url = `/api/v1/namespaces/${namespace}/events`
+    axios.get(url).then((response) => {
+      setEvents(response.data.items);
+      console.log(response.data.items);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+
   useEffect(() => {
 
-    const fnc = () => {
-      const url = "/api/v1/events"
-      axios.get(url).then((response) => {
-        setEvents(response.data.items);
-        console.log(response.data.items);
-      }).catch((err) => {
-        console.log(err);
-      })
-
-    }
-    const fnc1 = () => {
-      const url = `/api/v1/namespaces/${namespace}/events`
-      axios.get(url).then((response) => {
-        setEvents(response.data.items);
-        console.log(response.data.items);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
-
     (
-      namespace ? fnc1() : fnc() 
+      namespace ? getEvent() : getAllevents() 
     )
 
   }, [namespace])

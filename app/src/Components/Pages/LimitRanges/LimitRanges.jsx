@@ -9,30 +9,31 @@ const LimitRanges = () => {
   const [limitranges, setLlimitranges] = useState([]);
 
   const {namespace, setNamespace} = useContext(SelectContext);
+  
+  const getAllLimitranges = () => {
+    const url = "/api/v1/limitranges/"
+    axios.get(url).then((response) => {
+      setLlimitranges(response.data.items);
+      console.log(response.data.items);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+
+  const getLimitrange = () => {
+    const url = `/api/v1/namespaces/${namespace}/limitranges/`
+    axios.get(url).then((response) => {
+      setLlimitranges(response.data.items);
+      console.log(response.data.items);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
 
   useEffect(() => {
-    const fnc = () => {
-      const url = "/api/v1/limitranges/"
-      axios.get(url).then((response) => {
-        setLlimitranges(response.data.items);
-        console.log(response.data.items);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
-
-    const fnc1 = () => {
-      const url = `/api/v1/namespaces/${namespace}/limitranges/`
-      axios.get(url).then((response) => {
-        setLlimitranges(response.data.items);
-        console.log(response.data.items);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
 
     (
-      namespace ? fnc1() : fnc()
+      namespace ? getLimitrange() : getAllLimitranges()
     )
 
   }, [namespace])

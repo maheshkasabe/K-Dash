@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <div className='home'>
       <div className='title'>
-        <p> K-Dash </p>
+        <p>K-Dash</p>
       </div>
 
       <div className='main'>

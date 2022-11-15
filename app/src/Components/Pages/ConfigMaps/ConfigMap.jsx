@@ -4,38 +4,38 @@ import DataTable from 'react-data-table-component'
 import "../main.css"
 import { SelectContext } from '../../Context/Context';
 import Selector from '../LimitRanges/Selector';
-import Modal1 from '../../Modal/Modal1';
+import Configmap_Modal from '../../Modal/Configmap_Modal';
 
 const ConfigMap = () => {
-  const [configmaps, seConfigmaps] = useState([]);
+  const [configmaps, setConfigmaps] = useState([]);
   const [info , setInfo] = useState([])
   const [state, setState] = useState(false)
 
   const { namespace, setNamespace } = useContext(SelectContext);
+  
+  const getAllnamespaces = () => {
+    const url = "/api/v1/configmaps/"
+    axios.get(url).then((response) => {
+      setConfigmaps(response.data.items);
+      console.log(response.data.items);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+
+  const getsingleNamespace = () => {
+    const url = `/api/v1/namespaces/${namespace}/configmaps/`
+    axios.get(url).then((response) => {
+      setConfigmaps(response.data.items);
+      console.log(response.data.items);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
 
   useEffect(() => {
-    const fnc = () => {
-      const url = "/api/v1/configmaps/"
-      axios.get(url).then((response) => {
-        seConfigmaps(response.data.items);
-        console.log(response.data.items);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
-
-    const fnc1 = () => {
-      const url = `/api/v1/namespaces/${namespace}/configmaps/`
-      axios.get(url).then((response) => {
-        seConfigmaps(response.data.items);
-        console.log(response.data.items);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
-
     (
-      namespace ? fnc1() : fnc()
+      namespace ? getsingleNamespace() : getAllnamespaces()
     )
 
   }, [namespace])
@@ -86,7 +86,7 @@ const ConfigMap = () => {
         <DataTable columns={columns} data={configmaps} fixedHeader selectableRows highlightOnHover />
         {
           state && (
-            <Modal1 info={info} setState={setState} />
+            <Configmap_Modal info={info} setState={setState} />
           )
         }
       </div>

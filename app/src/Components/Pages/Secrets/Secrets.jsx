@@ -4,7 +4,7 @@ import DataTable from 'react-data-table-component'
 import "../main.css"
 import Selector from '../LimitRanges/Selector';
 import { SelectContext } from '../../Context/Context';
-import Modal1 from '../../Modal/Modal1';
+import Configmap_Modal from '../../Modal/Configmap_Modal';
 
 const Secrets = () => {
   const [secrets, setSecrets] = useState([]);
@@ -12,29 +12,30 @@ const Secrets = () => {
   const [state, setState] = useState(false)
 
   const { namespace, setNamespace } = useContext(SelectContext);
+  
+  const getAllSecrets = () => {
+    const url = "/api/v1/secrets/"
+    axios.get(url).then((response) => {
+      setSecrets(response.data.items);
+      console.log(response.data.items);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+  const getSecret = () => {
+    const url = `/api/v1/namespaces/${namespace}/secrets/`
+    axios.get(url).then((response) => {
+      setSecrets(response.data.items);
+      console.log(response.data.items);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
 
   useEffect(() => {
-    const fnc = () => {
-      const url = "/api/v1/secrets/"
-      axios.get(url).then((response) => {
-        setSecrets(response.data.items);
-        console.log(response.data.items);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
-    const fnc1 = () => {
-      const url = `/api/v1/namespaces/${namespace}/secrets/`
-      axios.get(url).then((response) => {
-        setSecrets(response.data.items);
-        console.log(response.data.items);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
 
     (
-      namespace ? fnc1() : fnc()
+      namespace ? getSecret() :getAllSecrets()
     )
   }, [namespace])
 
@@ -95,7 +96,7 @@ const Secrets = () => {
       <DataTable columns={columns} data={secrets}  fixedHeader selectableRows highlightOnHover />
       {
         state && (
-          <Modal1 info={info} setState={setState} />
+          <Configmap_Modal info={info} setState={setState} />
         )
       }
     </div>

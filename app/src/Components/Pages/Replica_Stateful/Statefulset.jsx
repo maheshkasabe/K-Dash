@@ -12,7 +12,7 @@ const Statefulset = () => {
 
     useEffect(() => {
 
-        const fnc = () => {
+        const getAllsetfulstates = () => {
             const url = "/apis/apps/v1/statefulsets"
             axios.get(url).then((response) => {
                 setStateful(response.data.items);
@@ -21,7 +21,7 @@ const Statefulset = () => {
                 console.log(err);
             })
         }
-        const fnc1 = () => {
+        const getStatefulset = () => {
             const url = `/apis/apps/v1/namespaces/${namespace}/statefulsets`
             axios.get(url).then((response) => {
                 setStateful(response.data.items);
@@ -32,7 +32,7 @@ const Statefulset = () => {
         }
 
         (
-            namespace ? fnc1() : fnc()
+            namespace ? getStatefulset() : getAllsetfulstates()
         )
 
     }, [namespace])

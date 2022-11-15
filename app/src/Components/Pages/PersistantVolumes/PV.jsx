@@ -12,7 +12,7 @@ const PV = () => {
 
   useEffect(() => {
 
-    const fnc = () => {
+    const getAllpvs = () => {
       const url = "/api/v1/persistentvolume/"
       axios.get(url).then((response) => {
         setPv(response.data.items);
@@ -21,7 +21,7 @@ const PV = () => {
         console.log(err);
       })
     }
-    const fnc1 = () => {
+    const getPV = () => {
       const url = `/api/v1/namespaces/${namespace}/persistentvolume/`
       axios.get(url).then((response) => {
         setPv(response.data.items);
@@ -32,7 +32,7 @@ const PV = () => {
     }
 
     (
-      namespace ? fnc1() : fnc()
+      namespace ? getPV() :getAllpvs()
     )
 
   }, [namespace])

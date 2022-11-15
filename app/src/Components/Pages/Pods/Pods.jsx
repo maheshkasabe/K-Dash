@@ -5,33 +5,33 @@ import { SelectContext } from '../../Context/Context';
 import Selector from '../LimitRanges/Selector';
 
 const Pods = () => {
-  const [pods, setPods] = useState([])
+   const [pods, setPods] = useState([])
 
-  const {namespace, setNamespace} = useContext(SelectContext);
-  
+  const { namespace } = useContext(SelectContext)
+
+  const getAllpods= () => {
+    const url = "/api/v1/pods/"
+    axios.get(url).then((response) => {
+      setPods(response.data.items);
+      console.log(response.data.items);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+
+  const getPod = () => {
+    const url = `/api/v1/namespaces/${namespace}/pods/`
+    axios.get(url).then((response) => {
+      setPods(response.data.items);
+      console.log(response.data.items);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+
   useEffect(() => {
-    const fnc= () => {
-      const url = "/api/v1/pods/"
-      axios.get(url).then((response) => {
-        setPods(response.data.items);
-        console.log(response.data.items);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
-
-    const fnc1 = () => {
-      const url = `/api/v1/namespaces/${namespace}/pods/`
-      axios.get(url).then((response) => {
-        setPods(response.data.items);
-        console.log(response.data.items);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
-
     (
-      namespace ? fnc1() : fnc() 
+      namespace ? getPod() : getAllpods() 
     )
 
   }, [namespace])
@@ -40,7 +40,7 @@ const Pods = () => {
     <div className='pods'>
       <div className='head'>
         <h1>All Pods ( {pods.length} ) Pods </h1>
-        <Selector /> 
+        <Selector  /> 
       </div>
 
       <div className='podlist'>

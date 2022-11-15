@@ -10,29 +10,29 @@ const Endpoint = () => {
 
   const {namespace, setNamespace} = useContext(SelectContext);
 
+  const getAllendpoints = () => {
+    const url = "/api/v1/endpoints/"
+    axios.get(url).then((response) => {
+      setEndpoints(response.data.items);
+      console.log(response.data.items);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+
+  const getEndpoint = () => {
+    const url = `/api/v1/namespaces/${namespace}/endpoints/`
+    axios.get(url).then((response) => {
+      setEndpoints(response.data.items);
+      console.log(response.data.items);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+
   useEffect(() => {
-    const fnc = () => {
-      const url = "/api/v1/endpoints/"
-      axios.get(url).then((response) => {
-        setEndpoints(response.data.items);
-        console.log(response.data.items);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
-
-    const fnc1 = () => {
-      const url = `/api/v1/namespaces/${namespace}/endpoints/`
-      axios.get(url).then((response) => {
-        setEndpoints(response.data.items);
-        console.log(response.data.items);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
-
     (
-      namespace ? fnc1() : fnc() 
+      namespace ? getEndpoint() : getAllendpoints() 
     )
 
   }, [namespace])
