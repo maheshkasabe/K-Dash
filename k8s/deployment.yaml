@@ -15,7 +15,7 @@ spec:
         app: kdash
     spec:
       containers:
-        - image: maheshkasbe/kdash:master
+        - image: maheshkasbe/kdash:v0.5
           name: kdash-container
           ports:
             - containerPort: 3000
