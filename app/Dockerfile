@@ -3,4 +3,4 @@ Run mkdir -p /home/app
 COPY . /home/app
 WORKDIR /home/app
 RUN yarn install
-CMD ["yarn","run ","start"]
+CMD ["yarn","run","start"]
