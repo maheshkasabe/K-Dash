@@ -14,9 +14,8 @@ spec:
       labels:
         app: kdash
     spec:
-      hostNetwork: true
       containers:
-        - image: maheshkasbe/kdash:v0.2
+        - image: maheshkasbe/kdash:master
           name: kdash-container
           ports:
             - containerPort: 3000
