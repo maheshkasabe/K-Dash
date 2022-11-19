@@ -2,6 +2,6 @@ version: '3'
 
 services:
   frontend:
-    image: docker.io/maheshkasbe/kdash:v0.9
+    image: docker.io/maheshkasbe/kdash:v0.0.1
     container_name: frontend
     network_mode: "host"
