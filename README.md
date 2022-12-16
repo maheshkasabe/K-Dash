@@ -6,7 +6,9 @@ Build with React & JavaScript. Real-time Monitoring of Your Kubernetes Cluster w
 
 ![alt tag](https://github.com/Mahesh-Kasabe/K-Dash/blob/master/Images/overview.png?raw=true)
 
-https://user-images.githubusercontent.com/60398112/208109990-568a7faf-2341-43c7-8e0a-ec7070b3d5b1.mp4
+
+https://user-images.githubusercontent.com/60398112/208110242-b3ecad1d-2a4e-4a4d-b79d-b3cc3c7e33ee.mp4
+
 
 ## What is it ?
 
