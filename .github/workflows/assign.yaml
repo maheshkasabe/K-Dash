@@ -10,4 +10,4 @@ jobs:
       - name: Assignee to Reviewer
         uses: pullreminders/assignee-to-reviewer-action@v1.0.4
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
