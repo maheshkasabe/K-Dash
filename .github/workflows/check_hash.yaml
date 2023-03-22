@@ -10,7 +10,7 @@ jobs:
       id: vars
       run: |
         calculatedSha=$(git rev-parse --short ${{ github.sha }})
-        echo "::set-output name=short_sha::$calculatedSha"
+        echo "{hash}={$calculatedSha}" >> $GITHUB_OUTPUT
 
     - name: Confirm git commit SHA output
-      run: echo ${{ steps.vars.outputs.short_sha }} 
+      run: echo ${{ steps.vars.outputs.hash }} 
