@@ -1,0 +1,21 @@
+name: CI 
+on: workflow_call
+jobs:   
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Get Branch
+      id: branch
+      run: echo "git_branch=${GITHUB_REF#refs/heads/}" >> $GITHUB_BRANCH
+
+    - name: Check Branch
+      run: echo "${{ env.branch }}"
+
+    - name: Get Hash
+      id: hash
+      run: echo "git_hash=$(git rev-parse | -c 1-6)" >> $GITHUB_HASH
+
+    - name: Check Hash
+      run: echo "${{ env.hash }}"
