@@ -6,9 +6,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Get Hash
-      id: hash
-      run: echo "git_hash=$(git rev-parse | -c 1-6)"
-      
-    - name: Check Hash
-      run: echo "${{ env.hash }}"
+    - name: Set short git commit SHA
+      id: vars
+      run: |
+        calculatedSha=$(git rev-parse --short ${{ github.sha }})
+        echo "::set-output name=short_sha::$calculatedSha"
+
+    - name: Confirm git commit SHA output
+      run: echo ${{ steps.vars.outputs.short_sha }} 
