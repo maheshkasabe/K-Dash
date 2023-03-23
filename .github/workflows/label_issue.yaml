@@ -13,4 +13,3 @@ jobs:
           labels-synonyms: '{"bug":["error","need fix","not working"],"enhancement":["upgrade"],"question":["help"]}'
           labels-not-allowed: '["good first issue"]'
           default-labels: '["help wanted"]'
-
