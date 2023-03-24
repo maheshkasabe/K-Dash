@@ -1,8 +1,5 @@
 name: "Label when approved"
-on:
-  workflow_run:
-    workflows: ["Workflow triggered on pull_request_review"]
-    types: ['requested']
+on: pull_request_review
 
 jobs:
 
