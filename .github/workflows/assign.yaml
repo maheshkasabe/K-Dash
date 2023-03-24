@@ -1,13 +1,12 @@
-name: Assign reviewers based on assignees
+name: 'Auto Assign'
 on:
   pull_request:
-    types: [assigned, unassigned]
+    types: [opened, ready_for_review]
 
 jobs:
-  assignee_to_reviewer:
+  add-reviews:
     runs-on: ubuntu-latest
     steps:
-      - name: Assignee to Reviewer
-        uses: pullreminders/assignee-to-reviewer-action@v1.0.4
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+      - uses: kentaro-m/auto-assign-action@v1.2.5
+        with:
+          configuration-path: '.github/some_name_for_configs.yml' # Only needed if you use something other than .github/auto_assign.yml
