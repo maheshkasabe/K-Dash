@@ -2,4 +2,4 @@
 
 kubectl proxy --www=.
 
-#Kubectl proxy start here
+#Kubectl proxy starts here locally 
