@@ -61,4 +61,3 @@ yarn run start
 1. Adding Namespaces 
 2. Adding / Deleting pods 
 3. Better UI 
-4. Scalabilty
