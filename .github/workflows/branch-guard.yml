@@ -11,6 +11,6 @@ jobs:
     steps:
     - uses: cirrus-actions/branch-guard@v1.2
       with:
-        appsToCheck: Cirrus CI # or any other App name (can be a comma separated list of names)
+        appsToCheck: K-Dash # or any other App name (can be a comma separated list of names)
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
