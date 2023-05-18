@@ -20,9 +20,7 @@ jobs:
     
     - name: Get Commit Hash
       id: vars
-      run: |
-        calculatedSha=$(git rev-parse --short ${{ github.sha }})
-        echo "{hash}={$calculatedSha}" >> $GITHUB_OUTPUT
+      run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
     
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -42,7 +40,7 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         REGISTRY_ALIAS: s1p9c0u3
         ECR_REPOSITORY: graphspace
-        IMAGE_TAG: ${{ steps.vars.outputs.hash }}
+        IMAGE_TAG: ${SHORT_SHA}
       run: |
         cd app
         docker build -t $ECR_REGISTRY/$REGISTRY_ALIAS/$ECR_REPOSITORY:$IMAGE_TAG .
