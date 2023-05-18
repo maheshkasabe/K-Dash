@@ -13,4 +13,4 @@ jobs:
         echo "{hash}={$calculatedSha}" >> $GITHUB_OUTPUT
 
     - name: Confirm git commit SHA output
-      run: echo ${{ steps.vars.calculatedhash }} 
+      run: echo ${GITHUB_SHA::7} 
