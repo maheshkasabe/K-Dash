@@ -18,6 +18,10 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2
     
+    - name: Get Commit Hash
+      id: version
+      run: calculatedhash=${GITHUB_SHA::7}
+    
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -36,7 +40,7 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         REGISTRY_ALIAS: s1p9c0u3
         ECR_REPOSITORY: graphspace
-        IMAGE_TAG: echo ${GITHUB_SHA::7}
+        IMAGE_TAG: ${{ steps.version.outputs.calculatedhash }}
       run: |
         cd app
         docker build -t $ECR_REGISTRY/$REGISTRY_ALIAS/$ECR_REPOSITORY:$IMAGE_TAG .
