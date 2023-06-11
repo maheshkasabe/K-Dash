@@ -1,0 +1,19 @@
+name: on merged
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - merged
+      
+jobs:
+  
+  build:
+    
+    name: Build & Push Image to ECR
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+    - name: build docker-compose file
+      run: docker-compose -f docker-compose.yml build
