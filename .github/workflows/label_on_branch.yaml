@@ -3,13 +3,12 @@ on: pull_request_target
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   pr-labeler:
-    permissions:
-      contents: read # for TimonVS/pr-labeler-action to read config file
-      pull-requests: write # for TimonVS/pr-labeler-action to add labels in PR
     runs-on: ubuntu-latest
+    
     steps:
       - name: branch-label
       - uses: TimonVS/pr-labeler-action@v4
